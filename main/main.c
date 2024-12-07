@@ -137,13 +137,13 @@ void TFT(void *pvParameters) {
 		WAIT;
 		
 		char file[32];
-		strcpy(file, "/images/esp_logo.png");
+		strcpy(file, "/images/Lenna.png");
 		DisplayPNG(&dev, file, CONFIG_WIDTH, CONFIG_HEIGHT);
 		WAIT;
 	} // end while
 }
 
 void app_main() {
-	initSPIFFS();
+	initSPIFFS();													//SPI Flash FileSystem
 	xTaskCreate(TFT, "TFT", 1024*6, NULL, 2, NULL);
 }

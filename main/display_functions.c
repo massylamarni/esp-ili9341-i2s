@@ -160,59 +160,26 @@ TickType_t DisplayFonts(TFT_t dev, int width, int height) {
 	InitFontx(fx24M,"/spiffs/ILMH24XB.FNT",""); // 12x24Dot Mincyo
 	InitFontx(fx32M,"/spiffs/ILMH32XB.FNT",""); // 16x32Dot Mincyo
 
-    // Multi Font Test
-    uint16_t color;
-    uint8_t ascii[40];
-    uint16_t margin = 10;
-    lcdFillScreen(&dev, BLACK);
-    color = WHITE;
-    lcdSetFontDirection(&dev, DIRECTION0);
-    uint16_t xpos = 0;
-    uint16_t ypos = 15;
-    int xd = 0;
-    int yd = 1;
-    if(width < height) {
-        lcdSetFontDirection(&dev, DIRECTION90);
-        xpos = (width-1)-16;
-        ypos = 0;
-        xd = 1;
-        yd = 0;
-    }
-    strcpy((char *)ascii, "16Dot Gothic Font");
-    lcdDrawString(&dev, fx16G, xpos, ypos, ascii, color);
-
-    xpos = xpos - (24 * xd) - (margin * xd);
-    ypos = ypos + (16 * yd) + (margin * yd);
-    strcpy((char *)ascii, "24Dot Gothic Font");
-    lcdDrawString(&dev, fx24G, xpos, ypos, ascii, color);
-
-    xpos = xpos - (32 * xd) - (margin * xd);
-    ypos = ypos + (24 * yd) + (margin * yd);
-    if (width >= 240) {
-        strcpy((char *)ascii, "32Dot Gothic Font");
-        lcdDrawString(&dev, fx32G, xpos, ypos, ascii, color);
-        xpos = xpos - (32 * xd) - (margin * xd);;
-        ypos = ypos + (32 * yd) + (margin * yd);
-    }
-
-    xpos = xpos - (10 * xd) - (margin * xd);
-    ypos = ypos + (10 * yd) + (margin * yd);
-    strcpy((char *)ascii, "16Dot Mincyo Font");
-    lcdDrawString(&dev, fx16M, xpos, ypos, ascii, color);
-
-    xpos = xpos - (24 * xd) - (margin * xd);;
-    ypos = ypos + (16 * yd) + (margin * yd);
-    strcpy((char *)ascii, "24Dot Mincyo Font");
-    lcdDrawString(&dev, fx24M, xpos, ypos, ascii, color);
-
-    if (width >= 240) {
-        xpos = xpos - (32 * xd) - (margin * xd);;
-        ypos = ypos + (24 * yd) + (margin * yd);
-        strcpy((char *)ascii, "32Dot Mincyo Font");
-        lcdDrawString(&dev, fx32M, xpos, ypos, ascii, color);
-    }
-    lcdSetFontDirection(&dev, DIRECTION0);
-    WAIT;
+    	// Multi Font Test
+		uint16_t color;
+		uint8_t ascii[40];
+		uint16_t margin = 10;
+		lcdFillScreen(&dev, BLACK);
+		color = WHITE;
+		lcdSetFontDirection(&dev, DIRECTION0);
+		uint16_t xpos =0 ;
+		uint16_t ypos = 90;
+		int xd = 0;
+		int yd = 1;
+	
+			xpos = xpos - (32 * xd) - (margin * xd);; //POSITION X DU TEXTE A AFFICHER 
+			ypos = ypos + (24 * yd) + (margin * yd); //POSITION Y DU TEXTE A AFFICHER
+			strcpy((char *)ascii, "Bonjour, ceci est un");
+			lcdDrawString(&dev, fx32G, xpos, ypos, ascii, color);  //&dev:ECRAN SUR LEQUEL ON AFFICHE, fx32G: FONT, xpos/ypos: POSITION,ascii:TEXTE A AFFICHER, color:COULEUR
+			strcpy((char *)ascii, "ecran graphique");
+			lcdDrawString(&dev, fx32G, xpos+30, ypos+30, ascii, color); //xpos+30 ypos+30: PREMIERE LIGNE OCCUPE TOUT L'ECRAN DEUXIEME LIGNE EST EN DESSOUS (+30)
+		
+		lcdSetFontDirection(&dev, DIRECTION0); //DIRECTION
 
     endTick = xTaskGetTickCount();
 	diffTick = endTick - startTick;
