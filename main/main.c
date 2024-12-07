@@ -132,13 +132,13 @@ void TFT(void *pvParameters) {
 	while(1) {
 		traceHeap();
 		ESP_LOGI(TAG, "Display functions started");
-
+//**********************************************************************************Fonction principale du code commence a partir d'ici *********************************************************
 		DisplayFonts(&dev, CONFIG_WIDTH, CONFIG_HEIGHT);
 		WAIT;
 		
 		char file[32];
-		strcpy(file, "/images/Lenna.png");
-		DisplayPNG(&dev, file, CONFIG_WIDTH, CONFIG_HEIGHT);
+		strcpy(file, "/images/jugo.png"); //IMPORTER UNE IMAGE VERS LA MEMOIRE FLASH
+		DisplayPNG(&dev, file, CONFIG_WIDTH, CONFIG_HEIGHT); //AFFICHER L'IMAGE
 		WAIT;
 	} // end while
 }
