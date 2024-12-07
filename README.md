@@ -1,35 +1,26 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+## Hardware:
 
-# _Sample project_
+#### Screen model:
+SKU: MAR2407
+Drivers: ILI9341/ST7789
+Resolution: 320x240
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+https://electro-e-shop.com/index.php/product/lcd-tft-2-4-inch-touch-display-for-arduino-uno-mega2560-2/
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+#### Board:
+esp32 with esp-idf framework v5.4
 
-
-
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
-
-## Example folder contents
-
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+#### Connections:
+#define LCD_D0_PIN	    (12)
+#define LCD_D1_PIN	    (13)
+#define LCD_D2_PIN	    (26)
+#define LCD_D3_PIN	    (25)
+#define LCD_D4_PIN	    (17)
+#define LCD_D5_PIN	    (16)
+#define LCD_D6_PIN	    (27)
+#define LCD_D7_PIN	    (14)
+#define LCD_RD_PIN	    (2)
+#define LCD_WR_PIN    	(4)
+#define LCD_RS_PIN	    (15)
+#define LCD_CS_PIN	    (33)
+#define LCD_RESET_PIN   (32)
