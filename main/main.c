@@ -43,9 +43,11 @@ void traceHeap() {
 		_first_free_heap_size = esp_get_free_heap_size();
 		flag++;
 	} else {
+		// Overflow
 		int _diff_free_heap_size = _first_free_heap_size - esp_get_free_heap_size();
 		ESP_LOGI(__FUNCTION__, "_diff_free_heap_size=%d", _diff_free_heap_size);
 
+		esp_restart();
 	}
 }
 
