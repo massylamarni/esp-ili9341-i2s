@@ -26,9 +26,7 @@
 
 #define INTERFACE INTERFACE_I2S
 #define DRIVER "ILI9341"
-#define INIT_FUNCTION(a, b, c, d, e) ili9341_lcdInit(a, b, c, d, e)
-#define INTERVAL 400
-#define WAIT vTaskDelay(INTERVAL)
+#define WAIT vTaskDelay(400)
 
 static const char *TAG = "MAIN";
 
@@ -47,6 +45,7 @@ void traceHeap() {
 	} else {
 		int _diff_free_heap_size = _first_free_heap_size - esp_get_free_heap_size();
 		ESP_LOGI(__FUNCTION__, "_diff_free_heap_size=%d", _diff_free_heap_size);
+
 	}
 }
 
@@ -110,24 +109,26 @@ static void initSPIFFS() {
 
 	ESP_LOGI(TAG, "Initializing SPIFFS");
 	esp_err_t ret;
-	ret = mountSPIFFS("/spiffs", "storage0", 10);
+	ret = mountSPIFFS("/spiffs", "storage0", 10);	// Fonts
 	if (ret != ESP_OK) return;
 	listSPIFFS("/spiffs/");
 
-	ret = mountSPIFFS("/icons", "storage1", 10);
+	ret = mountSPIFFS("/icons", "storage1", 10);	// Icons
 	if (ret != ESP_OK) return;
 	listSPIFFS("/icons/");
 
-	ret = mountSPIFFS("/images", "storage2", 14);
+	ret = mountSPIFFS("/images", "storage2", 14);	// Images
 	if (ret != ESP_OK) return;
 	listSPIFFS("/images/");
+
+	// Partitions created and files copied using the commands in /CMakeLists.txt
 }
 
 void TFT(void *pvParameters) {	
 	TFT_t dev;
 	lcd_interface_cfg(&dev, INTERFACE);
 
-	INIT_FUNCTION(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+	ili9341_lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
 
 	while(1) {
 		traceHeap();
@@ -137,7 +138,7 @@ void TFT(void *pvParameters) {
 		WAIT;
 		
 		char file[32];
-		strcpy(file, "/images/esp_logo.png");
+		strcpy(file, "/images/Lenna.png");	// Storing image path
 		DisplayPNG(&dev, file, CONFIG_WIDTH, CONFIG_HEIGHT);
 		WAIT;
 	} // end while

@@ -41,8 +41,8 @@
 #define LCD_RD_PIN	(2)
 #define LCD_WR_PIN	(4)
 #define LCD_RS_PIN	(15)
-#define LCD_CS_PIN	(33)
-#define LCD_RESET_PIN (32)
+#define LCD_CS_PIN	(23)
+#define LCD_RESET_PIN (22)
 #elif defined CONFIG_IDF_TARGET_ESP32S2 || CONFIG_IDF_TARGET_ESP32S3
 #define LCD_D0_PIN	(1)
 #define LCD_D1_PIN	(2)

@@ -178,14 +178,18 @@ TickType_t DisplayFonts(TFT_t dev, int width, int height) {
         xd = 1;
         yd = 0;
     }
+
+	//Line1
     strcpy((char *)ascii, "16Dot Gothic Font");
     lcdDrawString(&dev, fx16G, xpos, ypos, ascii, color);
 
+	//Line2
     xpos = xpos - (24 * xd) - (margin * xd);
     ypos = ypos + (16 * yd) + (margin * yd);
     strcpy((char *)ascii, "24Dot Gothic Font");
     lcdDrawString(&dev, fx24G, xpos, ypos, ascii, color);
 
+	//Line3
     xpos = xpos - (32 * xd) - (margin * xd);
     ypos = ypos + (24 * yd) + (margin * yd);
     if (width >= 240) {
@@ -195,24 +199,27 @@ TickType_t DisplayFonts(TFT_t dev, int width, int height) {
         ypos = ypos + (32 * yd) + (margin * yd);
     }
 
+	//Line4
     xpos = xpos - (10 * xd) - (margin * xd);
     ypos = ypos + (10 * yd) + (margin * yd);
     strcpy((char *)ascii, "16Dot Mincyo Font");
     lcdDrawString(&dev, fx16M, xpos, ypos, ascii, color);
 
+	//Line5
     xpos = xpos - (24 * xd) - (margin * xd);;
     ypos = ypos + (16 * yd) + (margin * yd);
     strcpy((char *)ascii, "24Dot Mincyo Font");
     lcdDrawString(&dev, fx24M, xpos, ypos, ascii, color);
 
+	//Line6
     if (width >= 240) {
         xpos = xpos - (32 * xd) - (margin * xd);;
         ypos = ypos + (24 * yd) + (margin * yd);
         strcpy((char *)ascii, "32Dot Mincyo Font");
         lcdDrawString(&dev, fx32M, xpos, ypos, ascii, color);
     }
+	
     lcdSetFontDirection(&dev, DIRECTION0);
-    WAIT;
 
     endTick = xTaskGetTickCount();
 	diffTick = endTick - startTick;
